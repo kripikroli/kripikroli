@@ -82,17 +82,35 @@
     .pulse { animation: pulse 2.6s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:.85} 50%{opacity:1} }
 
-    /* Agents drifting left-right, staggered, different ranges */
-    .agent { animation: drift 5s ease-in-out infinite; }
-    @keyframes drift { 0%,100%{transform:translateX(-10px)} 50%{transform:translateX(10px)} }
-    .a1{animation-delay:0s;animation-duration:5.2s}
-    .a2{animation-delay:.6s;animation-duration:4.4s;animation-direction:reverse}
-    .a3{animation-delay:.3s;animation-duration:6s}
-    .a4{animation-delay:.9s;animation-duration:4.8s;animation-direction:reverse}
-    .a5{animation-delay:.2s;animation-duration:5.6s}
-    .a6{animation-delay:.75s;animation-duration:4.6s;animation-direction:reverse}
-    .a7{animation-delay:.45s;animation-duration:5.9s}
-    .a8{animation-delay:1s;animation-duration:4.2s;animation-direction:reverse}
+    /* Agents bumping into their left/right neighbors, synchronized.
+       Odd bots go right-first, even bots go left-first, so adjacent
+       pairs meet in the middle and bounce. Squash at contact = bump. */
+    .agent { animation: bumpR 2.6s ease-in-out infinite;
+             transform-box: fill-box; transform-origin: center; }
+    @keyframes bumpR {
+      0%   { transform: translateX(-34px) scale(1,1); }
+      22%  { transform: translateX(30px)  scale(1,1); }
+      25%  { transform: translateX(34px)  scale(0.82,1.18); }  /* bump right neighbor */
+      28%  { transform: translateX(30px)  scale(1.08,0.92); }  /* recoil */
+      50%  { transform: translateX(-30px) scale(1,1); }
+      72%  { transform: translateX(-30px) scale(1,1); }
+      75%  { transform: translateX(-34px) scale(1.18,0.82); }  /* bump left neighbor */
+      78%  { transform: translateX(-30px) scale(0.92,1.08); }
+      100% { transform: translateX(-34px) scale(1,1); }
+    }
+    @keyframes bumpL {
+      0%   { transform: translateX(34px)  scale(1,1); }
+      22%  { transform: translateX(-30px) scale(1,1); }
+      25%  { transform: translateX(-34px) scale(1.18,0.82); } /* bump left neighbor */
+      28%  { transform: translateX(-30px) scale(0.92,1.08); }
+      50%  { transform: translateX(30px)  scale(1,1); }
+      72%  { transform: translateX(30px)  scale(1,1); }
+      75%  { transform: translateX(34px)  scale(0.82,1.18); } /* bump right neighbor */
+      78%  { transform: translateX(30px)  scale(1.08,0.92); }
+      100% { transform: translateX(34px)  scale(1,1); }
+    }
+    .a1,.a3,.a5,.a7 { animation-name: bumpR; }
+    .a2,.a4,.a6,.a8 { animation-name: bumpL; }
 
     .bob { animation: bob 2.4s ease-in-out infinite; }
     @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
