@@ -82,35 +82,47 @@
     .pulse { animation: pulse 2.6s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:.85} 50%{opacity:1} }
 
-    /* Agents bumping into their left/right neighbors, synchronized.
-       Odd bots go right-first, even bots go left-first, so adjacent
-       pairs meet in the middle and bounce. Squash at contact = bump. */
-    .agent { animation: bumpR 2.6s ease-in-out infinite;
+    /* Agents bump their neighbor within a pair. Each PAIR is synced so
+       they actually meet, but pairs run at different, slower, irregular
+       tempos with staggered delays -> looks random and relaxed, not fast.
+       Irregular keyTimes + dwell pauses avoid a metronome feel. */
+    .agent { animation: bumpR 6s ease-in-out infinite;
              transform-box: fill-box; transform-origin: center; }
     @keyframes bumpR {
       0%   { transform: translateX(-34px) scale(1,1); }
-      22%  { transform: translateX(30px)  scale(1,1); }
-      25%  { transform: translateX(34px)  scale(0.82,1.18); }  /* bump right neighbor */
-      28%  { transform: translateX(30px)  scale(1.08,0.92); }  /* recoil */
-      50%  { transform: translateX(-30px) scale(1,1); }
-      72%  { transform: translateX(-30px) scale(1,1); }
-      75%  { transform: translateX(-34px) scale(1.18,0.82); }  /* bump left neighbor */
-      78%  { transform: translateX(-30px) scale(0.92,1.08); }
+      6%   { transform: translateX(-34px) scale(1,1); }        /* dwell */
+      30%  { transform: translateX(30px)  scale(1,1); }
+      33%  { transform: translateX(34px)  scale(0.84,1.16); }  /* bump right */
+      37%  { transform: translateX(29px)  scale(1.07,0.93); }  /* recoil */
+      44%  { transform: translateX(20px)  scale(1,1); }
+      58%  { transform: translateX(-30px) scale(1,1); }
+      80%  { transform: translateX(-30px) scale(1,1); }        /* dwell */
+      83%  { transform: translateX(-34px) scale(1.16,0.84); }  /* bump left */
+      87%  { transform: translateX(-30px) scale(0.93,1.07); }
       100% { transform: translateX(-34px) scale(1,1); }
     }
     @keyframes bumpL {
       0%   { transform: translateX(34px)  scale(1,1); }
-      22%  { transform: translateX(-30px) scale(1,1); }
-      25%  { transform: translateX(-34px) scale(1.18,0.82); } /* bump left neighbor */
-      28%  { transform: translateX(-30px) scale(0.92,1.08); }
-      50%  { transform: translateX(30px)  scale(1,1); }
-      72%  { transform: translateX(30px)  scale(1,1); }
-      75%  { transform: translateX(34px)  scale(0.82,1.18); } /* bump right neighbor */
-      78%  { transform: translateX(30px)  scale(1.08,0.92); }
+      6%   { transform: translateX(34px)  scale(1,1); }
+      30%  { transform: translateX(-30px) scale(1,1); }
+      33%  { transform: translateX(-34px) scale(1.16,0.84); }  /* bump left */
+      37%  { transform: translateX(-29px) scale(0.93,1.07); }
+      44%  { transform: translateX(-20px) scale(1,1); }
+      58%  { transform: translateX(30px)  scale(1,1); }
+      80%  { transform: translateX(30px)  scale(1,1); }
+      83%  { transform: translateX(34px)  scale(0.84,1.16); }  /* bump right */
+      87%  { transform: translateX(30px)  scale(1.07,0.93); }
       100% { transform: translateX(34px)  scale(1,1); }
     }
+    /* pair directions */
     .a1,.a3,.a5,.a7 { animation-name: bumpR; }
     .a2,.a4,.a6,.a8 { animation-name: bumpL; }
+    /* per-pair tempo (slower + varied) and staggered starts.
+       both bots in a pair share duration+delay so they still meet. */
+    .a1,.a2 { animation-duration: 5.5s;  animation-delay: 0s;    }
+    .a3,.a4 { animation-duration: 7.2s;  animation-delay: -2.1s; }
+    .a5,.a6 { animation-duration: 6.3s;  animation-delay: -3.8s; }
+    .a7,.a8 { animation-duration: 8s;    animation-delay: -1.2s; }
 
     .bob { animation: bob 2.4s ease-in-out infinite; }
     @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
