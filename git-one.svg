@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="900" height="600" viewBox="0 0 900 600" fill="none"
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-     role="img" aria-label="Welcome to my profile! Life is good, you should Git one! Agents hallucinating. Skills: AWS, AI, Kiro, Python, TypeScript, Databases. Blame the agents.">
+     role="img" aria-label="Welcome to my profile! Life is good, you should Git one! Agents hallucinating. Skills: AWS, AI, Kiro, Python and TypeScript, Grok, Databases. A few sorceries I know.">
   <title>Welcome to my profile! Life is good, you should Git one!</title>
 
   <defs>
@@ -82,6 +82,7 @@
     .sub      { font: 700 30px 'Segoe UI','Helvetica Neue',Arial,sans-serif; }
     .label    { font: 600 13px 'Segoe UI','Helvetica Neue',Arial,sans-serif; fill:#cbd5e1; }
     .deco     { font: italic 700 34px 'Segoe Script','Brush Script MT','Snell Roundhand','Comic Sans MS',cursive; }
+    .caption  { font: 800 26px 'Segoe UI','Helvetica Neue',Arial,sans-serif; letter-spacing:.5px; }
     .status   { font: 600 15px 'Segoe UI','Helvetica Neue',Arial,sans-serif; fill:#94a3b8; letter-spacing:.5px; }
     .ts       { font: 800 32px 'Segoe UI',Arial,sans-serif; fill:#ffffff; }
     .aws      { font: 800 24px 'Segoe UI',Arial,sans-serif; }
@@ -246,7 +247,7 @@
   </text>
 
   <!-- ================= ICON ROW (smaller chips) ================= -->
-  <!-- Order: AWS, AI, Kiro, Python, TS, Databases -->
+  <!-- Order: AWS, AI, Kiro, Py/TS, Grok, Databases -->
   <!-- Each chip is 96x96; inner artwork authored at 118 scale then scaled 0.8136 -->
 
   <!-- AWS -->
@@ -264,26 +265,52 @@
     </g>
   </g>
 
-  <!-- AI -->
+  <!-- AI (microchip / processor icon) -->
   <g transform="translate(196,392)">
     <g class="float d2">
       <rect width="96" height="96" rx="22" fill="#111827" stroke="#334155" stroke-width="1.5" filter="url(#chipglow)"/>
       <g transform="scale(0.8136)">
-        <g class="pulse" transform="translate(59,50)">
-          <circle cx="0" cy="0" r="8" fill="#34d399"/>
-          <g stroke="#34d399" stroke-width="3" fill="none">
-            <line x1="0" y1="-8" x2="0" y2="-24"/><line x1="0" y1="8" x2="0" y2="24"/>
-            <line x1="-8" y1="0" x2="-24" y2="0"/><line x1="8" y1="0" x2="24" y2="0"/>
-            <line x1="6" y1="-6" x2="16" y2="-16"/><line x1="-6" y1="6" x2="-16" y2="16"/>
+        <g transform="translate(59,49)">
+          <!-- pins on all four sides -->
+          <g fill="#22d3ee">
+            <!-- top -->
+            <rect x="-18" y="-40" width="5" height="10" rx="1.5"/>
+            <rect x="-2.5" y="-40" width="5" height="10" rx="1.5"/>
+            <rect x="13" y="-40" width="5" height="10" rx="1.5"/>
+            <!-- bottom -->
+            <rect x="-18" y="30" width="5" height="10" rx="1.5"/>
+            <rect x="-2.5" y="30" width="5" height="10" rx="1.5"/>
+            <rect x="13" y="30" width="5" height="10" rx="1.5"/>
+            <!-- left -->
+            <rect x="-40" y="-18" width="10" height="5" rx="1.5"/>
+            <rect x="-40" y="-2.5" width="10" height="5" rx="1.5"/>
+            <rect x="-40" y="13" width="10" height="5" rx="1.5"/>
+            <!-- right -->
+            <rect x="30" y="-18" width="10" height="5" rx="1.5"/>
+            <rect x="30" y="-2.5" width="10" height="5" rx="1.5"/>
+            <rect x="30" y="13" width="10" height="5" rx="1.5"/>
           </g>
+          <!-- chip die -->
+          <rect x="-30" y="-30" width="60" height="60" rx="10"
+                fill="#0b1220" stroke="#34d399" stroke-width="2.5"/>
+          <!-- inner circuit ring -->
+          <rect x="-21" y="-21" width="42" height="42" rx="6"
+                fill="none" stroke="#22d3ee" stroke-width="1.5" opacity="0.55"/>
+          <!-- AI text -->
+          <text x="0" y="8" text-anchor="middle"
+                font="800 26px 'Segoe UI',Arial,sans-serif" fill="#6ee7b7">AI</text>
+          <!-- pulsing corner nodes -->
           <g fill="#a7f3d0">
-            <circle cx="0" cy="-24" r="4"><animate attributeName="r" values="4;6;4" dur="1.8s" repeatCount="indefinite"/></circle>
-            <circle cx="0" cy="24"  r="4"><animate attributeName="r" values="4;6;4" dur="2.1s" repeatCount="indefinite"/></circle>
-            <circle cx="-24" cy="0" r="4"><animate attributeName="r" values="4;6;4" dur="1.5s" repeatCount="indefinite"/></circle>
-            <circle cx="24" cy="0"  r="4"><animate attributeName="r" values="4;6;4" dur="2.4s" repeatCount="indefinite"/></circle>
-            <circle cx="16" cy="-16" r="3.5"><animate attributeName="r" values="3.5;5.5;3.5" dur="1.9s" repeatCount="indefinite"/></circle>
-            <circle cx="-16" cy="16" r="3.5"><animate attributeName="r" values="3.5;5.5;3.5" dur="2.2s" repeatCount="indefinite"/></circle>
+            <circle cx="-21" cy="-21" r="2.5"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></circle>
+            <circle cx="21" cy="-21" r="2.5"><animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/></circle>
+            <circle cx="-21" cy="21" r="2.5"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>
+            <circle cx="21" cy="21" r="2.5"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle>
           </g>
+          <!-- energy pulse traveling the die edge -->
+          <circle r="3" fill="#e0fff4">
+            <animateMotion path="M-30 -20 L-30 -30 L30 -30 L30 30 L-30 30 L-30 -20 Z"
+                           dur="2.6s" repeatCount="indefinite" calcMode="linear"/>
+          </circle>
         </g>
         <text x="59" y="112" class="label" text-anchor="middle">AI</text>
       </g>
@@ -318,30 +345,47 @@
     </g>
   </g>
 
-  <!-- Python -->
+  <!-- Python + TypeScript combined -->
   <g transform="translate(468,392)">
     <g class="float d4">
       <rect width="96" height="96" rx="22" fill="#111827" stroke="#334155" stroke-width="1.5" filter="url(#chipglow)"/>
       <g transform="scale(0.8136)">
-        <g class="pulse" transform="translate(30,18)">
-          <path d="M29 0 C13 0 14 7 14 7 l0 8 l15 0 l0 3 l-21 0 C0 18 2 32 8 32 l6 0 l0 -9 c0 -6 5 -9 10 -9 l14 0 c5 0 8 -4 8 -9 l0 -8 C46 3 44 0 29 0 z M20 5 a3 3 0 1 1 0 0.1 z" fill="#3776AB"/>
-          <path d="M29 58 C45 58 44 51 44 51 l0 -8 l-15 0 l0 -3 l21 0 C58 40 56 26 50 26 l-6 0 l0 9 c0 6 -5 9 -10 9 l-14 0 c-5 0 -8 4 -8 9 l0 8 C12 55 14 58 29 58 z M38 53 a3 3 0 1 1 0 -0.1 z" fill="#FFD43B"/>
+        <g class="pulse">
+          <!-- Python glyph (left), scaled + shifted -->
+          <g transform="translate(6,26) scale(0.62)">
+            <path d="M29 0 C13 0 14 7 14 7 l0 8 l15 0 l0 3 l-21 0 C0 18 2 32 8 32 l6 0 l0 -9 c0 -6 5 -9 10 -9 l14 0 c5 0 8 -4 8 -9 l0 -8 C46 3 44 0 29 0 z M20 5 a3 3 0 1 1 0 0.1 z" fill="#3776AB"/>
+            <path d="M29 58 C45 58 44 51 44 51 l0 -8 l-15 0 l0 -3 l21 0 C58 40 56 26 50 26 l-6 0 l0 9 c0 6 -5 9 -10 9 l-14 0 c-5 0 -8 4 -8 9 l0 8 C12 55 14 58 29 58 z M38 53 a3 3 0 1 1 0 -0.1 z" fill="#FFD43B"/>
+          </g>
+          <!-- TS square (right) -->
+          <g transform="translate(62,30)">
+            <rect x="0" y="0" width="44" height="44" rx="9" fill="#3178C6"/>
+            <text x="22" y="31" text-anchor="middle" font="800 22px 'Segoe UI',Arial,sans-serif" fill="#ffffff">TS</text>
+          </g>
         </g>
-        <text x="59" y="112" class="label" text-anchor="middle">Python</text>
+        <text x="59" y="112" class="label" text-anchor="middle">Py / TS</text>
       </g>
     </g>
   </g>
 
-  <!-- TypeScript -->
+  <!-- Grok (xAI slash mark: dark square + white diagonal slash) -->
   <g transform="translate(604,392)">
     <g class="float d5">
       <rect width="96" height="96" rx="22" fill="#111827" stroke="#334155" stroke-width="1.5" filter="url(#chipglow)"/>
       <g transform="scale(0.8136)">
         <g class="pulse" transform="translate(24,16)">
-          <rect x="0" y="0" width="70" height="70" rx="12" fill="#3178C6"/>
-          <text x="35" y="48" text-anchor="middle" class="ts">TS</text>
+          <!-- brand square -->
+          <rect x="0" y="0" width="70" height="70" rx="12" fill="#0a0a0a"/>
+          <!-- slash glyph (from official geometry, scaled 70/163.53=0.428, centered) -->
+          <g transform="translate(5,5) scale(0.428)">
+            <polygon points="105.02 34.51 38.72 129.19 58.68 129.19 124.98 34.51 105.02 34.51" fill="#ffffff"/>
+          </g>
+          <!-- energy node sweeping the slash -->
+          <circle r="3" fill="#22d3ee">
+            <animateMotion path="M52 20 L28 60" dur="1.8s" repeatCount="indefinite" calcMode="linear"/>
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.82;1" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
         </g>
-        <text x="59" y="112" class="label" text-anchor="middle">TypeScript</text>
+        <text x="59" y="112" class="label" text-anchor="middle">Grok</text>
       </g>
     </g>
   </g>
@@ -369,26 +413,26 @@
       </g>
     </g>
   </g>
-  <!-- Bottom deco caption with two up-arrows pointing at the stack above -->
+  <!-- Bottom caption with two up-arrows pointing at the stack above -->
   <g transform="translate(450,552)">
     <!-- left arrow -->
-    <g transform="translate(-172,-6)">
+    <g transform="translate(-198,-6)">
       <path d="M0 14 V-6 M-8 4 L0 -6 L8 4" stroke="#fbbf24" stroke-width="4"
             fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       <animateTransform attributeName="transform" type="translate"
-        values="-172 -6; -172 -14; -172 -6" dur="1.6s" repeatCount="indefinite"
+        values="-198 -6; -198 -14; -198 -6" dur="1.6s" repeatCount="indefinite"
         calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
     </g>
     <!-- phrase -->
-    <text x="0" y="6" class="deco" text-anchor="middle" fill="url(#headline)" filter="url(#glow)">
-      Blame the agents
+    <text x="0" y="4" class="caption" text-anchor="middle" fill="url(#headline)" filter="url(#glow)">
+      A few sorceries I know
     </text>
     <!-- right arrow -->
-    <g transform="translate(172,-6)">
+    <g transform="translate(198,-6)">
       <path d="M0 14 V-6 M-8 4 L0 -6 L8 4" stroke="#fbbf24" stroke-width="4"
             fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       <animateTransform attributeName="transform" type="translate"
-        values="172 -6; 172 -14; 172 -6" dur="1.6s" begin="-0.8s" repeatCount="indefinite"
+        values="198 -6; 198 -14; 198 -6" dur="1.6s" begin="-0.8s" repeatCount="indefinite"
         calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
     </g>
   </g>
