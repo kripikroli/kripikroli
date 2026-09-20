@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="900" height="600" viewBox="0 0 900 600" fill="none"
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-     role="img" aria-label="Welcome to my profile! Life is good, you should Git one! Agents hallucinating. Skills: AWS, AI, Kiro, Python, TypeScript, Databases">
+     role="img" aria-label="Welcome to my profile! Life is good, you should Git one! Agents hallucinating. Skills: AWS, AI, Kiro, Python, TypeScript, Databases. Blame the agents.">
   <title>Welcome to my profile! Life is good, you should Git one!</title>
 
   <defs>
@@ -81,6 +81,7 @@
     .headline { font: 800 46px 'Segoe UI','Helvetica Neue',Arial,sans-serif; }
     .sub      { font: 700 30px 'Segoe UI','Helvetica Neue',Arial,sans-serif; }
     .label    { font: 600 13px 'Segoe UI','Helvetica Neue',Arial,sans-serif; fill:#cbd5e1; }
+    .deco     { font: italic 700 34px 'Segoe Script','Brush Script MT','Snell Roundhand','Comic Sans MS',cursive; }
     .status   { font: 600 15px 'Segoe UI','Helvetica Neue',Arial,sans-serif; fill:#94a3b8; letter-spacing:.5px; }
     .ts       { font: 800 32px 'Segoe UI',Arial,sans-serif; fill:#ffffff; }
     .aws      { font: 800 24px 'Segoe UI',Arial,sans-serif; }
@@ -101,78 +102,10 @@
     .pulse { animation: pulse 2.6s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:.85} 50%{opacity:1} }
 
-    /* Agents bump their neighbor within a pair. Each PAIR is synced so
-       they actually meet, but pairs run at different, slower, irregular
-       tempos with staggered delays -> looks random and relaxed, not fast.
-       Irregular keyTimes + dwell pauses avoid a metronome feel. */
-    .agent { animation: bumpR 6s ease-in-out infinite;
-             transform-box: fill-box; transform-origin: center; }
-    @keyframes bumpR {
-      0%   { transform: translateX(-34px) scale(1,1); }
-      6%   { transform: translateX(-34px) scale(1,1); }        /* dwell */
-      30%  { transform: translateX(30px)  scale(1,1); }
-      33%  { transform: translateX(34px)  scale(0.84,1.16); }  /* bump right */
-      37%  { transform: translateX(29px)  scale(1.07,0.93); }  /* recoil */
-      44%  { transform: translateX(20px)  scale(1,1); }
-      58%  { transform: translateX(-30px) scale(1,1); }
-      80%  { transform: translateX(-30px) scale(1,1); }        /* dwell */
-      83%  { transform: translateX(-34px) scale(1.16,0.84); }  /* bump left */
-      87%  { transform: translateX(-30px) scale(0.93,1.07); }
-      100% { transform: translateX(-34px) scale(1,1); }
-    }
-    @keyframes bumpL {
-      0%   { transform: translateX(34px)  scale(1,1); }
-      6%   { transform: translateX(34px)  scale(1,1); }
-      30%  { transform: translateX(-30px) scale(1,1); }
-      33%  { transform: translateX(-34px) scale(1.16,0.84); }  /* bump left */
-      37%  { transform: translateX(-29px) scale(0.93,1.07); }
-      44%  { transform: translateX(-20px) scale(1,1); }
-      58%  { transform: translateX(30px)  scale(1,1); }
-      80%  { transform: translateX(30px)  scale(1,1); }
-      83%  { transform: translateX(34px)  scale(0.84,1.16); }  /* bump right */
-      87%  { transform: translateX(30px)  scale(1.07,0.93); }
-      100% { transform: translateX(34px)  scale(1,1); }
-    }
-    /* pair directions */
-    .a1,.a3,.a5,.a7 { animation-name: bumpR; }
-    .a2,.a4,.a6,.a8 { animation-name: bumpL; }
-    /* per-pair tempo (slower + varied) and staggered starts.
-       both bots in a pair share duration+delay so they still meet. */
-    .a1,.a2 { animation-duration: 5.5s;  animation-delay: 0s;    }
-    .a3,.a4 { animation-duration: 7.2s;  animation-delay: -2.1s; }
-    .a5,.a6 { animation-duration: 6.3s;  animation-delay: -3.8s; }
-    .a7,.a8 { animation-duration: 8s;    animation-delay: -1.2s; }
-
-    .bob { animation: bob 2.4s ease-in-out infinite; }
-    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
-
-    /* Dizzy spell: bot wobbles/tilts for a moment, then recovers.
-       Long cycle with the wobble only in a short window = feels random. */
-    .dizzy { transform-box: fill-box; transform-origin: center bottom;
-             animation: dizzy 9s ease-in-out infinite; }
-    @keyframes dizzy {
-      0%, 62%   { transform: rotate(0deg); }
-      66%       { transform: rotate(-11deg); }
-      70%       { transform: rotate(9deg); }
-      74%       { transform: rotate(-8deg); }
-      78%       { transform: rotate(6deg); }
-      82%       { transform: rotate(-4deg); }
-      86%, 100% { transform: rotate(0deg); }
-    }
-    /* Halo only visible during the dizzy window */
-    .haloFade { animation: haloFade 9s ease-in-out infinite; }
-    @keyframes haloFade {
-      0%, 60%   { opacity: 0; }
-      64%, 84%  { opacity: 1; }
-      88%, 100% { opacity: 0; }
-    }
-    /* second dizzy bot on a longer, offset cycle so spells don't coincide */
-    .dizzy2 { transform-box: fill-box; transform-origin: center bottom;
-              animation: dizzy 13s ease-in-out infinite; animation-delay: -5s; }
-    .haloFade2 { animation: haloFade 13s ease-in-out infinite; animation-delay: -5s; }
+    /* Agent bump/bob/dizzy/halo now driven by SMIL below (camo-safe) */
   </style>
 
-  <rect width="900" height="540" rx="28" fill="url(#bg)"/>
+  <rect width="900" height="600" rx="28" fill="url(#bg)"/>
 
   <circle cx="120" cy="70"  r="90" fill="#6366f1" opacity="0.12">
     <animate attributeName="opacity" values="0.12;0.22;0.12" dur="5s" repeatCount="indefinite"/>
@@ -210,15 +143,101 @@
     <path d="M740 300 H793" stroke="#38bdf8"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.5s" repeatCount="indefinite"/></path>
   </g>
 
-  <!-- 8 pixel-bot agents drifting left/right -->
-  <g transform="translate(80,286)"><g class="agent a1"><g class="bob"><use href="#bot" fill="#a855f7" filter="url(#neon)"/></g></g></g>
-  <g transform="translate(183,286)"><g class="agent a2"><g class="bob"><use href="#bot" fill="#22d3ee" filter="url(#neon)"/></g></g></g>
-  <g transform="translate(286,286)"><g class="agent a3"><g class="bob"><use href="#bot" fill="#3b82f6" filter="url(#neon)"/></g></g></g>
-  <g transform="translate(389,286)"><g class="agent a4"><g class="bob"><use href="#bot" fill="#22c55e" filter="url(#neon)"/></g></g></g>
-  <g transform="translate(492,286)"><g class="agent a5"><g class="bob"><g class="dizzy"><use href="#bot" fill="#f472b6" filter="url(#neon)"/></g><g class="haloFade" transform="translate(14,-4)"><use href="#halo"/></g></g></g></g>
-  <g transform="translate(595,286)"><g class="agent a6"><g class="bob"><use href="#bot" fill="#fbbf24" filter="url(#neon)"/></g></g></g>
-  <g transform="translate(698,286)"><g class="agent a7"><g class="bob"><use href="#bot" fill="#38bdf8" filter="url(#neon)"/></g></g></g>
-  <g transform="translate(801,286)"><g class="agent a8"><g class="bob"><g class="dizzy2"><use href="#bot" fill="#f97316" filter="url(#neon)"/></g><g class="haloFade2" transform="translate(14,-4)"><use href="#halo"/></g></g></g></g>
+  <!-- 8 pixel-bot agents (SMIL): bump + squash + bob + dizzy + halo -->
+  <g transform="translate(80,286)">
+    <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="-34 0; -34 0; 30 0; 34 0; 29 0; 20 0; -30 0; -30 0; -34 0; -30 0; -34 0" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="5.5s" begin="0s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+      <g transform="translate(14,14)">
+        <g><animateTransform attributeName="transform" attributeType="XML" type="scale" values="1 1;1 1;1 1;0.84 1.16;1.07 0.93;1 1;1 1;1 1;1.16 0.84;0.93 1.07;1 1" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="5.5s" begin="0s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+          <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+            <use href="#bot" transform="translate(-14,-14)" fill="#a855f7" filter="url(#neon)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(183,286)">
+    <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="34 0; 34 0; -30 0; -34 0; -29 0; -20 0; 30 0; 30 0; 34 0; 30 0; 34 0" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="5.5s" begin="0s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+      <g transform="translate(14,14)">
+        <g><animateTransform attributeName="transform" attributeType="XML" type="scale" values="1 1;1 1;1 1;1.16 0.84;0.93 1.07;1 1;1 1;1 1;0.84 1.16;1.07 0.93;1 1" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="5.5s" begin="0s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+          <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+            <use href="#bot" transform="translate(-14,-14)" fill="#22d3ee" filter="url(#neon)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(286,286)">
+    <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="-34 0; -34 0; 30 0; 34 0; 29 0; 20 0; -30 0; -30 0; -34 0; -30 0; -34 0" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="7.2s" begin="-2.1s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+      <g transform="translate(14,14)">
+        <g><animateTransform attributeName="transform" attributeType="XML" type="scale" values="1 1;1 1;1 1;0.84 1.16;1.07 0.93;1 1;1 1;1 1;1.16 0.84;0.93 1.07;1 1" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="7.2s" begin="-2.1s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+          <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+            <use href="#bot" transform="translate(-14,-14)" fill="#3b82f6" filter="url(#neon)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(389,286)">
+    <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="34 0; 34 0; -30 0; -34 0; -29 0; -20 0; 30 0; 30 0; 34 0; 30 0; 34 0" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="7.2s" begin="-2.1s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+      <g transform="translate(14,14)">
+        <g><animateTransform attributeName="transform" attributeType="XML" type="scale" values="1 1;1 1;1 1;1.16 0.84;0.93 1.07;1 1;1 1;1 1;0.84 1.16;1.07 0.93;1 1" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="7.2s" begin="-2.1s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+          <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+            <use href="#bot" transform="translate(-14,-14)" fill="#22c55e" filter="url(#neon)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(492,286)">
+    <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="-34 0; -34 0; 30 0; 34 0; 29 0; 20 0; -30 0; -30 0; -34 0; -30 0; -34 0" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="6.3s" begin="-3.8s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+      <g transform="translate(14,14)">
+        <g><animateTransform attributeName="transform" attributeType="XML" type="scale" values="1 1;1 1;1 1;0.84 1.16;1.07 0.93;1 1;1 1;1 1;1.16 0.84;0.93 1.07;1 1" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="6.3s" begin="-3.8s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+          <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+            <g><animateTransform attributeName="transform" attributeType="XML" type="rotate" values="0 0 14; 0 0 14; -11 0 14; 9 0 14; -8 0 14; 6 0 14; -4 0 14; 0 0 14; 0 0 14" keyTimes="0;0.62;0.66;0.70;0.74;0.78;0.82;0.86;1" dur="9s" begin="0s" repeatCount="indefinite"/>
+              <use href="#bot" transform="translate(-14,-14)" fill="#f472b6" filter="url(#neon)"/>
+            </g>
+            <g transform="translate(0,-18)"><use href="#halo"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.60;0.64;0.84;0.88;1" dur="9s" begin="0s" repeatCount="indefinite"/></g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(595,286)">
+    <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="34 0; 34 0; -30 0; -34 0; -29 0; -20 0; 30 0; 30 0; 34 0; 30 0; 34 0" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="6.3s" begin="-3.8s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+      <g transform="translate(14,14)">
+        <g><animateTransform attributeName="transform" attributeType="XML" type="scale" values="1 1;1 1;1 1;1.16 0.84;0.93 1.07;1 1;1 1;1 1;0.84 1.16;1.07 0.93;1 1" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="6.3s" begin="-3.8s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+          <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+            <use href="#bot" transform="translate(-14,-14)" fill="#fbbf24" filter="url(#neon)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(698,286)">
+    <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="-34 0; -34 0; 30 0; 34 0; 29 0; 20 0; -30 0; -30 0; -34 0; -30 0; -34 0" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="8.0s" begin="-1.2s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+      <g transform="translate(14,14)">
+        <g><animateTransform attributeName="transform" attributeType="XML" type="scale" values="1 1;1 1;1 1;0.84 1.16;1.07 0.93;1 1;1 1;1 1;1.16 0.84;0.93 1.07;1 1" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="8.0s" begin="-1.2s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+          <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+            <use href="#bot" transform="translate(-14,-14)" fill="#38bdf8" filter="url(#neon)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(801,286)">
+    <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="34 0; 34 0; -30 0; -34 0; -29 0; -20 0; 30 0; 30 0; 34 0; 30 0; 34 0" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="8.0s" begin="-1.2s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+      <g transform="translate(14,14)">
+        <g><animateTransform attributeName="transform" attributeType="XML" type="scale" values="1 1;1 1;1 1;1.16 0.84;0.93 1.07;1 1;1 1;1 1;0.84 1.16;1.07 0.93;1 1" keyTimes="0;0.06;0.3;0.33;0.37;0.44;0.58;0.8;0.83;0.87;1.0" dur="8.0s" begin="-1.2s" calcMode="spline" keySplines="0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1; 0.4 0 0.4 1" repeatCount="indefinite"/>
+          <g><animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+            <g><animateTransform attributeName="transform" attributeType="XML" type="rotate" values="0 0 14; 0 0 14; -11 0 14; 9 0 14; -8 0 14; 6 0 14; -4 0 14; 0 0 14; 0 0 14" keyTimes="0;0.62;0.66;0.70;0.74;0.78;0.82;0.86;1" dur="13s" begin="-5s" repeatCount="indefinite"/>
+              <use href="#bot" transform="translate(-14,-14)" fill="#f97316" filter="url(#neon)"/>
+            </g>
+            <g transform="translate(0,-18)"><use href="#halo"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.60;0.64;0.84;0.88;1" dur="13s" begin="-5s" repeatCount="indefinite"/></g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
 
   <!-- Status line -->
   <text x="450" y="352" class="status" text-anchor="middle">
@@ -348,6 +367,29 @@
         </g>
         <text x="59" y="112" class="label" text-anchor="middle">Databases</text>
       </g>
+    </g>
+  </g>
+  <!-- Bottom deco caption with two up-arrows pointing at the stack above -->
+  <g transform="translate(450,552)">
+    <!-- left arrow -->
+    <g transform="translate(-172,-6)">
+      <path d="M0 14 V-6 M-8 4 L0 -6 L8 4" stroke="#fbbf24" stroke-width="4"
+            fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <animateTransform attributeName="transform" type="translate"
+        values="-172 -6; -172 -14; -172 -6" dur="1.6s" repeatCount="indefinite"
+        calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+    </g>
+    <!-- phrase -->
+    <text x="0" y="6" class="deco" text-anchor="middle" fill="url(#headline)" filter="url(#glow)">
+      Blame the agents
+    </text>
+    <!-- right arrow -->
+    <g transform="translate(172,-6)">
+      <path d="M0 14 V-6 M-8 4 L0 -6 L8 4" stroke="#fbbf24" stroke-width="4"
+            fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <animateTransform attributeName="transform" type="translate"
+        values="172 -6; 172 -14; 172 -6" dur="1.6s" begin="-0.8s" repeatCount="indefinite"
+        calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
     </g>
   </g>
 
