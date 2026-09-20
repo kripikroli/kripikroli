@@ -55,6 +55,25 @@
       <rect x="12" y="24" width="4"  height="4"/>
       <rect x="19" y="24" width="5"  height="4"/>
     </g>
+
+    <!-- Dizzy halo: little stars orbiting a center point. Centered at 0,0 -->
+    <g id="halo">
+      <g>
+        <!-- three stars evenly spaced on a ~13px radius ring -->
+        <g transform="translate(0,-13)">
+          <path d="M0 -3 l0.9 2 l2.1 0.3 l-1.5 1.5 l0.4 2.1 l-1.9 -1 l-1.9 1 l0.4 -2.1 l-1.5 -1.5 l2.1 -0.3 Z" fill="#fde047"/>
+        </g>
+        <g transform="rotate(120) translate(0,-13)">
+          <path d="M0 -3 l0.9 2 l2.1 0.3 l-1.5 1.5 l0.4 2.1 l-1.9 -1 l-1.9 1 l0.4 -2.1 l-1.5 -1.5 l2.1 -0.3 Z" fill="#f0abfc"/>
+        </g>
+        <g transform="rotate(240) translate(0,-13)">
+          <path d="M0 -3 l0.9 2 l2.1 0.3 l-1.5 1.5 l0.4 2.1 l-1.9 -1 l-1.9 1 l0.4 -2.1 l-1.5 -1.5 l2.1 -0.3 Z" fill="#7dd3fc"/>
+        </g>
+        <!-- spin the whole ring -->
+        <animateTransform attributeName="transform" type="rotate"
+          from="0" to="360" dur="0.9s" repeatCount="indefinite"/>
+      </g>
+    </g>
   </defs>
 
   <style>
@@ -126,6 +145,31 @@
 
     .bob { animation: bob 2.4s ease-in-out infinite; }
     @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+
+    /* Dizzy spell: bot wobbles/tilts for a moment, then recovers.
+       Long cycle with the wobble only in a short window = feels random. */
+    .dizzy { transform-box: fill-box; transform-origin: center bottom;
+             animation: dizzy 9s ease-in-out infinite; }
+    @keyframes dizzy {
+      0%, 62%   { transform: rotate(0deg); }
+      66%       { transform: rotate(-11deg); }
+      70%       { transform: rotate(9deg); }
+      74%       { transform: rotate(-8deg); }
+      78%       { transform: rotate(6deg); }
+      82%       { transform: rotate(-4deg); }
+      86%, 100% { transform: rotate(0deg); }
+    }
+    /* Halo only visible during the dizzy window */
+    .haloFade { animation: haloFade 9s ease-in-out infinite; }
+    @keyframes haloFade {
+      0%, 60%   { opacity: 0; }
+      64%, 84%  { opacity: 1; }
+      88%, 100% { opacity: 0; }
+    }
+    /* second dizzy bot on a longer, offset cycle so spells don't coincide */
+    .dizzy2 { transform-box: fill-box; transform-origin: center bottom;
+              animation: dizzy 13s ease-in-out infinite; animation-delay: -5s; }
+    .haloFade2 { animation: haloFade 13s ease-in-out infinite; animation-delay: -5s; }
   </style>
 
   <rect width="900" height="540" rx="28" fill="url(#bg)"/>
@@ -171,10 +215,10 @@
   <g transform="translate(183,286)"><g class="agent a2"><g class="bob"><use href="#bot" fill="#22d3ee" filter="url(#neon)"/></g></g></g>
   <g transform="translate(286,286)"><g class="agent a3"><g class="bob"><use href="#bot" fill="#3b82f6" filter="url(#neon)"/></g></g></g>
   <g transform="translate(389,286)"><g class="agent a4"><g class="bob"><use href="#bot" fill="#22c55e" filter="url(#neon)"/></g></g></g>
-  <g transform="translate(492,286)"><g class="agent a5"><g class="bob"><use href="#bot" fill="#f472b6" filter="url(#neon)"/></g></g></g>
+  <g transform="translate(492,286)"><g class="agent a5"><g class="bob"><g class="dizzy"><use href="#bot" fill="#f472b6" filter="url(#neon)"/></g><g class="haloFade" transform="translate(14,-4)"><use href="#halo"/></g></g></g></g>
   <g transform="translate(595,286)"><g class="agent a6"><g class="bob"><use href="#bot" fill="#fbbf24" filter="url(#neon)"/></g></g></g>
   <g transform="translate(698,286)"><g class="agent a7"><g class="bob"><use href="#bot" fill="#38bdf8" filter="url(#neon)"/></g></g></g>
-  <g transform="translate(801,286)"><g class="agent a8"><g class="bob"><use href="#bot" fill="#f97316" filter="url(#neon)"/></g></g></g>
+  <g transform="translate(801,286)"><g class="agent a8"><g class="bob"><g class="dizzy2"><use href="#bot" fill="#f97316" filter="url(#neon)"/></g><g class="haloFade2" transform="translate(14,-4)"><use href="#halo"/></g></g></g></g>
 
   <!-- Status line -->
   <text x="450" y="352" class="status" text-anchor="middle">
