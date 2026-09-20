@@ -1,5 +1,5 @@
 <div align="center">
 
-<img src="./git-one.svg" alt="Life is short, you should Git one — Good at these: AWS, React, TypeScript, Kiro, Python, AI" width="900"/>
+<img src="./git-one.svg" alt="Life is good, you should Git one! — AWS, AI, Kiro, Python, TypeScript, Databases" width="900"/>
 
 </div>
